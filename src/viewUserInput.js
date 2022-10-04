@@ -1,0 +1,47 @@
+import ViewOutput from './viewOutput.js';
+
+export default class ViewUserInput {
+
+    constructor(){
+        let pictureContent = null;
+        this.viewOutput = new ViewOutput();
+
+        this.uploadPicture();
+        this.removePicture();
+        this.downloadPicture();
+    }
+
+    uploadPicture(){
+        const fileEl = document.getElementById('uploadPic');
+        fileEl.addEventListener('change', () => {
+            // when the user select a file
+            if(fileEl.files.length > 0){
+                const file = fileEl.files[0];
+                const reader = new FileReader();
+                reader.addEventListener('load',(e) => {
+                    // triggered when the file is loaded
+                    // the file content will be stored in:
+                    //  e.target.result
+                    // as soon as the image is loaded, we will paint
+                    this.pictureContent = e.target.result;
+                    this.viewOutput.paintPicture(this.pictureContent);
+                });
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    removePicture(){
+        const removeButton = document.getElementById('removePic');
+        removeButton.addEventListener('click', () => {
+            this.viewOutput.paintPicture(null);
+        });    
+    }
+
+    downloadPicture(){
+        const downloadButton = document.getElementById('downloadPic');
+        downloadButton.addEventListener('click', () => {
+            this.viewOutput.downloadPicture(downloadButton);
+        });
+    }
+}
