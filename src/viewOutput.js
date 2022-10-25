@@ -1,5 +1,9 @@
 export default class ViewOutput {
 
+    constructor(){
+        this.size = 1;
+    }
+
     paintPicture(picture){
         this.resetCanvas();
         const image = new Image();
@@ -37,7 +41,7 @@ export default class ViewOutput {
         ctx.font = '2em serif';
         ctx.textAlign = 'right';
         ctx.fillText(new Date().toISOString().substr(0,10), canvas.width, canvas.height);
-    
+    }    
 
     downloadPicture(element){
         const canvas = document.getElementById('watermarkCanvas');
@@ -47,7 +51,11 @@ export default class ViewOutput {
     calculateDimensions(image){
         const el = document.getElementById('pictureWrapper');
         const aspectRatio = image.width / image.height;
-        const width = el.clientWidth * 1;
+        const width = el.clientWidth * this.size;
         return {'width': width, 'height': width / aspectRatio};
+    }
+
+    setSize(size){
+        this.size = size;
     }
 }

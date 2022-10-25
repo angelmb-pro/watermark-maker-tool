@@ -9,6 +9,10 @@ export default class ViewUserInput {
         this.uploadPicture();
         this.removePicture();
         this.downloadPicture();
+
+        this.reduceSize();
+        this.resetSize();
+        this.enlargeSize();
     }
 
     uploadPicture(){
@@ -42,6 +46,30 @@ export default class ViewUserInput {
         const downloadButton = document.getElementById('downloadPic');
         downloadButton.addEventListener('click', () => {
             this.viewOutput.downloadPicture(downloadButton);
+        });
+    }
+
+    reduceSize(){
+        const button = document.getElementById('reduce');
+        button.addEventListener('click', () => {
+            this.viewOutput.setSize(0.5);
+            this.viewOutput.paintPicture(this.pictureContent);
+        });
+    }
+
+    resetSize(){
+        const button = document.getElementById('reset');
+        button.addEventListener('click', () => {
+            this.viewOutput.setSize(1);
+            this.viewOutput.paintPicture(this.pictureContent);
+        });
+    }
+
+    enlargeSize(){
+        const button = document.getElementById('enlarge');
+        button.addEventListener('click', () => {
+            this.viewOutput.setSize(1.5);
+            this.viewOutput.paintPicture(this.pictureContent);
         });
     }
 }
