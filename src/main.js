@@ -5,21 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const app = new App();
 });
 
-class App {
+class App{
+
     constructor(){
-        this.viewUserInput = new ViewUserInput();
+        console.log('create the app class');
         this.viewOutput = new ViewOutput();
-
-        this.viewUserInput.setTestFunction(this.testFunction,this);
-        this.viewUserInput.setUploadPictureFunction(this.uploadPicture,this);
+        this.viewUserInput = new ViewUserInput();
+        this.viewUserInput.setTestFunction(this.customFunction,this);
     }
 
-    uploadPicture(imageContent){
-        console.log('upload picture!');
-        this.viewOutput.paintPicture(imageContent);
-    }
-
-    testFunction(){
-        console.log('this is a test function!');
+    customFunction(){
+        console.log('custom function.');
+        this.viewOutput.showSomeText();
     }
 }
