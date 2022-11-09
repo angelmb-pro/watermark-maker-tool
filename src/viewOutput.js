@@ -4,6 +4,10 @@ export default class ViewOutput {
         this.size = 1;
     }
 
+    showSomeText(){
+        console.log('viewOutput.show some text');
+    }
+
     paintPicture(picture){
         this.resetCanvas();
         const image = new Image();

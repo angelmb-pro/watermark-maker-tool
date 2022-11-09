@@ -15,6 +15,11 @@ export default class ViewUserInput {
         this.enlargeSize();
     }
 
+    setTestFunction(fn, context){
+        console.log('viewUserInput.setTestFunction');
+        fn.call(context);
+    }
+
     uploadPicture(){
         const fileEl = document.getElementById('uploadPic');
         fileEl.addEventListener('change', () => {
